@@ -1,11 +1,9 @@
-import { Link, NavLink, useLocation } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
 import Container from "./Container"
 import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
 
 function Navbar() {
-
-    const route = useLocation();
-    const pathname = route.pathname;
     const navRef = useRef(null);
     const [navbar, setNavbar] = useState(false);
 
@@ -42,10 +40,23 @@ function Navbar() {
 
     }, [navbar, navRef]);
 
+    const animationConfiguration = {
+        initial: { y: '-2rem', opacity: 0 },
+        animate: { y: '0rem', opacity: 1 },
+        exit: { y: '-2rem', opacity: 0 },
+    };
+
   return (
     <>
     <header>
-        <div className="fixed z-50 inset-x-0 top-0 border-b border-zinc-800 bg-zinc-950/50 backdrop-blur-[2px]">
+        <motion.div 
+            className="fixed z-50 inset-x-0 top-0 border-b border-zinc-800 bg-zinc-950/50 backdrop-blur-[2px]"
+            variants={animationConfiguration}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            transition={{ duration: 0.7, ease: 'easeInOut' }}
+        >
             <Container className="relative">
                 <div className="flex justify-between items-center">
                     <div className="py-4">
@@ -66,7 +77,7 @@ function Navbar() {
                     </nav>
                 </div>
             </Container>
-        </div>
+        </motion.div>
 
         
         {navbar && <div className="fixed z-50 inset-0 bg-black/50"/>}

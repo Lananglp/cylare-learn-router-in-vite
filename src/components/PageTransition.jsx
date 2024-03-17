@@ -5,9 +5,9 @@ function PageTransition(props) {
     const {children} = props;
 
     const animationConfiguration = {
-        initial: { x: '-5rem', opacity: 0 },
-        animate: { x: '0rem', opacity: 1 },
-        exit: { x: '5rem', opacity: 0 },
+        initial: { y: '-5rem', opacity: 0 },
+        animate: { y: '0rem', opacity: 1 },
+        exit: { y: '5rem', opacity: 0 },
     };
 
   return (
